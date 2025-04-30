@@ -15,16 +15,23 @@ iris_data = pd.DataFrame(data = iris.data, columns = iris.feature_names)
 # target data
 iris_data["target"] = iris.target
 
-display_width(iris_data)
-
 # split train and test data
 X_train, X_test, y_train, y_test = train_test_split(iris_data.loc[:, iris_data.columns != "target"],
                                                     iris_data["target"],
                                                     test_size = 0.2)
 
 # initialise logistic regression model
-# model = LogisticRegression()
-# model.fit(X_train, y_train)
+model = LogisticRegression(max_iter = 200)
+model.fit(X_train, y_train)
+# realise prediction
+prediction = model.predict(X_test)
 
-print(X_train)
-print(y_train)
+# turn data to pandas info
+y_test = pd.Series(y_test, 
+                   name = "target")
+prediction = pd.Series(prediction, 
+                       index = y_test.index, 
+                       name = "target")
+
+print(prediction.head())
+print(y_test.head())
