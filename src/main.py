@@ -32,6 +32,10 @@ y_test = pd.Series(y_test,
 prediction = pd.Series(prediction, 
                        index = y_test.index, 
                        name = "target")
+# create output data
+test_data = pd.concat([X_test, y_test], axis = 1)
+prediction_data = pd.concat([X_test, prediction], axis = 1)
 
-print(prediction.head())
-print(y_test.head())
+# display test data and prediction data
+display_length(test_data)
+display_length(prediction_data)
