@@ -6,6 +6,7 @@ import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, confusion_matrix
 
 from display_utils import (display_all, display_length, display_width)
 
@@ -37,5 +38,12 @@ test_data = pd.concat([X_test, y_test], axis = 1)
 prediction_data = pd.concat([X_test, prediction], axis = 1)
 
 # display test data and prediction data
-display_length(test_data)
-display_length(prediction_data)
+display_all(test_data)
+display_all(prediction_data)
+
+# evaluation
+accuracy_scr = accuracy_score(y_test, prediction)
+confusion_mat = confusion_matrix(y_test, prediction)
+
+print(f"Accuracy:\n{accuracy_scr * 100:.2f}%")
+print(f"Confusion matrix:\n{confusion_mat}")
