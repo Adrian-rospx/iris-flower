@@ -10,21 +10,31 @@ import seaborn as sns
 # preparing the data
 iris = load_iris()
 iris_data = pd.DataFrame(data = iris.data, columns = iris.feature_names)
-# add target labels
-iris_data['target'] = iris.target
-# change target numbers to flower names
-iris_data['target_name'] = iris_data['target'].apply(lambda x: iris.target_names[x])
+# target data
+iris_data["target"] = iris.target
 
 # use seaborn for display and visualisation
 sns.set_theme()
 
-sns.pairplot(iris_data, hue = "target_name")
+sns.pairplot(iris_data, hue="target")
 plt.show()
 
-iris_lengths = iris_data.loc[:, ["sepal length (cm)", "petal length (cm)"]]
-sns.pairplot(iris_lengths)
+# load and display length data
+iris_lengths = iris_data.loc[:, ["sepal length (cm)", "petal length (cm)", 'target']]
+sns.relplot(
+    data = iris_lengths,
+    x = "sepal length (cm)",
+    y = "petal length (cm)",
+    hue = "target"
+)
 plt.show()
 
-iris_widths = iris_data.loc[:, ["sepal width (cm)", "petal width (cm)"]]
-sns.pairplot(iris_widths)
+# display width data
+iris_widths = iris_data.loc[:, ["sepal width (cm)", "petal width (cm)", "target"]]
+sns.relplot(
+    data = iris_widths,
+    x = "sepal width (cm)",
+    y = "petal width (cm)",
+    hue = "target"
+)
 plt.show()
