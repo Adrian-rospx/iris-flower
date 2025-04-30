@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, confusion_matrix
 
 def evaluate_results(y_test: pd.DataFrame, y_pred: pd.DataFrame):
-    # display accuracy score and confusion matrix data
+    """display accuracy score and confusion matrix data"""
     accuracy_scr = accuracy_score(y_test, y_pred)
     confusion_mat = confusion_matrix(y_test, y_pred)
 
