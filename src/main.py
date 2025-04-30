@@ -3,22 +3,18 @@
 # and uncovering the patterns with machine learning algorithms
 
 import pandas as pd
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, confusion_matrix
 
-from display_utils import (display_all, display_length, display_width)
+from data_prep import get_iris_data
+from display_utils import display_all, display_length, display_width
+from evaluate import evaluate_results
 
-# preparing the data
-iris = load_iris()
-iris_data = pd.DataFrame(data = iris.data, columns = iris.feature_names)
-# target data
-iris_data["target"] = iris.target
+iris_data, iris_target = get_iris_data()
 
 # split train and test data
-X_train, X_test, y_train, y_test = train_test_split(iris_data.loc[:, iris_data.columns != "target"],
-                                                    iris_data["target"],
+X_train, X_test, y_train, y_test = train_test_split(iris_data,
+                                                    iris_target,
                                                     test_size = 0.2)
 
 # initialise logistic regression model
@@ -27,23 +23,15 @@ model.fit(X_train, y_train)
 # realise prediction
 prediction = model.predict(X_test)
 
-# turn data to pandas info
+# turn data to pandas series
 y_test = pd.Series(y_test, 
                    name = "target")
 prediction = pd.Series(prediction, 
                        index = y_test.index, 
                        name = "target")
-# create output data
-test_data = pd.concat([X_test, y_test], axis = 1)
-prediction_data = pd.concat([X_test, prediction], axis = 1)
 
 # display test data and prediction data
-display_all(test_data)
-display_all(prediction_data)
+display_all(X_test, y_test)
+display_all(X_test, prediction)
 
-# evaluation
-accuracy_scr = accuracy_score(y_test, prediction)
-confusion_mat = confusion_matrix(y_test, prediction)
-
-print(f"Accuracy:\n{accuracy_scr * 100:.2f}%")
-print(f"Confusion matrix:\n{confusion_mat}")
+evaluate_results(y_test, prediction)
