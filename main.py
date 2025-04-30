@@ -16,11 +16,15 @@ iris_data['target'] = iris.target
 iris_data['target_name'] = iris_data['target'].apply(lambda x: iris.target_names[x])
 
 # use seaborn for display and visualisation
+sns.set_theme()
+
 sns.pairplot(iris_data, hue = "target_name")
 plt.show()
 
-iris_data.hist(figsize=(10,8))
+iris_lengths = iris_data.loc[:, ["sepal length (cm)", "petal length (cm)"]]
+sns.pairplot(iris_lengths)
 plt.show()
 
-sns.boxplot(x="target_name", y="petal length (cm)", data=iris_data)
+iris_widths = iris_data.loc[:, ["sepal width (cm)", "petal width (cm)"]]
+sns.pairplot(iris_widths)
 plt.show()
