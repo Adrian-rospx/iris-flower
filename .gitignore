@@ -1,2 +1,4 @@
 # cache data
 *.pyc
+# venv
+/.venv
