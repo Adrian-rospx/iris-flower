@@ -6,6 +6,7 @@ import seaborn as sns
 sns.set_theme()
 
 def display_all(iris_data):
+    """display all data in a pairplot"""
     sns.pairplot(iris_data, hue="target")
     plt.show()
 
