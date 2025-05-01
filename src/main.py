@@ -34,6 +34,7 @@ def main():
     """
     # logistic regression
     y_lr_pred = logistic_regression(X_train, X_test, y_train, y_test, c=1)
+    # k nearest neighbors
     y_knn_pred = k_nearest_neighbors(X_train, X_test, y_train, y_test, k=5)
 
     # display normal plot of training data
