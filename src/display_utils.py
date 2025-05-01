@@ -12,7 +12,16 @@ def display_all(iris_data, target_data: pd.Series = pd.Series()):
         sns.pairplot(iris_data)
     else:
         data = pd.concat([iris_data, target_data], axis = 1)
-        sns.pairplot(data, hue="target")
+        sns.pairplot(data, hue="target", corner = True)
+    plt.show()
+
+def display_reg(iris_data, target_data: pd.Series = pd.Series()):
+    """display all data in a pairplot as a linear regression"""
+    if target_data.empty:
+        sns.pairplot(iris_data)
+    else:
+        data = pd.concat([iris_data, target_data], axis = 1)
+        sns.pairplot(data, hue="target", corner = True, kind="reg")
     plt.show()
 
 def display_length(iris_data, target_data: pd.Series | None = None):
@@ -49,4 +58,8 @@ def display_width(iris_data, target_data: pd.Series | None = None):
             y = "petal width (cm)",
             hue = "target"
         )
+    plt.show()
+
+def display_confusion_matrix(cm: list):
+    sns.heatmap(cm)
     plt.show()

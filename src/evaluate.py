@@ -8,3 +8,5 @@ def evaluate_results(y_test: pd.DataFrame, y_pred: pd.DataFrame):
 
     print(f"Accuracy:\n{accuracy_scr * 100:.2f}%\n")
     print(f"Confusion matrix:\n{confusion_mat}")
+
+    return confusion_mat
