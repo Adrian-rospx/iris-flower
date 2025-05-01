@@ -16,6 +16,9 @@ def logistic_regression(X_train, X_test, y_train, y_test) -> pd.Series:
     return y_pred
 
 def pca(iris_data) -> pd.DataFrame:
+    """PCA dimensionality reduction to a 2d matrix
+    as a Pandas DataFrame
+    """
     pca = PCA(n_components=2)
     coordinates = pca.fit_transform(iris_data)
     coordinates = pd.DataFrame(coordinates)

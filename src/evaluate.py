@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, confusion_matrix
+
 from display_utils import display_confusion_matrix
 
 def evaluate_results(y_test: pd.DataFrame, y_pred: pd.DataFrame):

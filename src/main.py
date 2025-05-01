@@ -4,31 +4,27 @@
     graphing the iris flower dataset
     and displaying the patterns 
     by using machine learning algorithms
-
-    supervised learning: 
-        linear regression
 """
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import seaborn as sns
 # user defined:
 from data_prep import get_iris_data
 from display_utils import display_all, display_reg, display_pca
 from ml_models import logistic_regression
 from evaluate import evaluate_results
 
-iris_data, iris_target = get_iris_data()
-
-# split train and test data
-X_train, X_test, y_train, y_test = train_test_split(iris_data,
-                                                    iris_target,
-                                                    test_size = 0.2)
-# turn output data to pandas series
-y_test = pd.Series(y_test, 
-                name = "target")
-
 def main():
+    # get iris flower data
+    iris_data, iris_target = get_iris_data()
+
+    # split train and test data
+    X_train, X_test, y_train, y_test = train_test_split(iris_data,
+                                                        iris_target,
+                                                        test_size = 0.2)
+    # turn output data to pandas series
+    y_test = pd.Series(y_test, name = "target")
+
     # display pca plot of all data
     display_pca(iris_data, iris_target)
 
