@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
+from sklearn.decomposition import PCA
 
 def logistic_regression(X_train, X_test, y_train, y_test) -> pd.Series:
     """return prediction of the 
@@ -13,3 +14,10 @@ def logistic_regression(X_train, X_test, y_train, y_test) -> pd.Series:
                         index = y_test.index, 
                         name = "target")
     return y_pred
+
+def pca(iris_data) -> pd.DataFrame:
+    pca = PCA(n_components=2)
+    coordinates = pca.fit_transform(iris_data)
+    coordinates = pd.DataFrame(coordinates)
+    
+    return coordinates

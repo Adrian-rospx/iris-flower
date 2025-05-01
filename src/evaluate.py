@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.metrics import accuracy_score, confusion_matrix
+from display_utils import display_confusion_matrix
 
 def evaluate_results(y_test: pd.DataFrame, y_pred: pd.DataFrame):
     """display accuracy score and confusion matrix data"""
@@ -9,4 +10,4 @@ def evaluate_results(y_test: pd.DataFrame, y_pred: pd.DataFrame):
     print(f"Accuracy:\n{accuracy_scr * 100:.2f}%\n")
     print(f"Confusion matrix:\n{confusion_mat}")
 
-    return confusion_mat
+    display_confusion_matrix(confusion_mat)

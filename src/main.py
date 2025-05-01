@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 import seaborn as sns
 # user defined:
 from data_prep import get_iris_data
-from display_utils import display_all, display_reg, display_confusion_matrix
+from display_utils import display_all, display_reg, display_pca
 from ml_models import logistic_regression
 from evaluate import evaluate_results
 
@@ -29,18 +29,21 @@ y_test = pd.Series(y_test,
                 name = "target")
 
 def main():
+    # display pca plot of all data
+    display_pca(iris_data, iris_target)
+
     # logistic regression
     y_prediction = logistic_regression(X_train, X_test, y_train, y_test)
 
-    # display evaluation stats
-    confusion_mat = evaluate_results(y_test, y_prediction)
-    display_confusion_matrix(confusion_mat)
-
+    # display normal plot of training data
     display_reg(X_train, y_train)
+
+    # display evaluation stats
+    evaluate_results(y_test, y_prediction)
+
     # display test data and prediction data
     display_all(X_test, y_test)
     display_all(X_test, y_prediction)
-
 
 
 if __name__ == "__main__":
